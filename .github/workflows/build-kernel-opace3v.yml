@@ -4,7 +4,7 @@ on:
   workflow_call:  # This allows this workflow to be called from another workflow
   workflow_dispatch:
     inputs:
-      KSU_VERSION:
+      KERNELSU_VERSION:
         description: "KSU版本(必须填纯数字)"
         required: true
         default: ''
@@ -92,7 +92,7 @@ jobs:
           echo "Adding KernelSU..."
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
           cd ./KernelSU/kernel
-          sed -i 's/ccflags-y += -DKSU_VERSION=16/ccflags-y += -DKSU_VERSION=${{ github.event.inputs.KSU_VERSION }}/' ./Makefile
+          sed -i 's/ccflags-y += -DKSU_VERSION=16/ccflags-y += -DKSU_VERSION=${{ github.event.inputs.KERNELSU_VERSION }}/' ./Makefile
           
       - name: Apply SUSFS Patches
         run: |

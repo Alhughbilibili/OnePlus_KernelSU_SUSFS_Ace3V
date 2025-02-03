@@ -4,7 +4,7 @@
 本仓库为**个人自用仓库**，主要适配特定设备型号。  
 如需其他设备支持，请自行：  
 - Fork 本仓库进行修改，或  
-- 基于源仓库 [WildPlusKernel/OnePlus_KernelSU_SUSFS](https://github.com/WildPlusKernel/OnePlus_KernelSU_SUSFS) 适配。  
+- Fork 源仓库 [WildPlusKernel/OnePlus_KernelSU_SUSFS](https://github.com/WildPlusKernel/OnePlus_KernelSU_SUSFS) 适配。  
 
 ---
 

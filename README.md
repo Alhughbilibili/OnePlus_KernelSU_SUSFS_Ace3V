@@ -1,7 +1,7 @@
 # KernelSU susfs 定制内核  
 
 **🔔 重要提示**  
-本仓库为**个人自用仓库**，主要适配特定设备型号。  
+本仓库为**个人自用仓库**，主要适配特定设备型号（因刷入本仓库Action导致变砖自己负责）  
 如需其他设备支持，请自行：  
 - Fork 本仓库进行修改，或  
 - Fork 源仓库 [WildPlusKernel/OnePlus_KernelSU_SUSFS](https://github.com/WildPlusKernel/OnePlus_KernelSU_SUSFS) 适配。  

@@ -156,14 +156,26 @@ jobs:
       - name: Add LXC supports
         run: |
           echo "添加LXC支持"
-          cd "$GITHUB_WORKSPACE"
+          cd "$CONFIG/kernel_platform"
+          wget https://raw.githubusercontent.com/Alhughbilibili/OnePlus_KernelSU_SUSFS_Ace3V/refs/heads/main/LXC-DOCKER-OPEN-CONFIG.sh
+          sh LXC-DOCKER-OPEN-CONFIG.sh
+          rm -rf utils
           git clone https://github.com/Alhughbilibili/lxc-docker-support-for-android utils
-          cd "$GITHUB_WORKSPACE/utils"
-          #测试目录是否正确(开发用，之后会移除)
-          ls
-          chmod +x lxc-patch.sh
-          chmod +x runcpatch.sh
-          sh lxc-patch.sh
+          echo 'source "utils/Kconfig"' >> "Kconfig"
+          echo "CONFIG_DOCKER=y" >> ./common/arch/arm64/configs/gki_defconfig
+          sed -i '/CONFIG_ANDROID_PARANOID_NETWORK/d' common/arch/arm64/configs/gki_defconfig
+          echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> ./common/arch/arm64/configs/gki_defconfig
+          chmod +x $CONFIG/utils/runcpatch.sh
+          if [ -f $CONFIG/kernel_platform/kernel/cgroup/cgroup.c ]; then
+            sh $CONFIG/kernel_platform/utils/runcpatch.sh $CONFIG/kernel_platform/kernel/cgroup/cgroup.c
+          fi
+          if [ -f $CONFIG/kernel_platform/kernel/cgroup.c ]; then
+            sh $CONFIG/kernel_platform/utils/runcpatch.sh $CONFIG/kernel_platform/kernel/cgroup.c
+          fi
+          if [ -f $CONFIG/kernel_platform/net/netfilter/xt_qtaguid.c ]; then
+            patch -p0 < $CONFIG/kernel_platform/utils/xt_qtaguid.patch
+          fi
+          
           
           
           

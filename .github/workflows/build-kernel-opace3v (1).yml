@@ -157,6 +157,9 @@ jobs:
         run: |
           echo "添加LXC支持"
           cd "$CONFIG/kernel_platform"
+          ls
+          cd common
+          ls
           wget https://raw.githubusercontent.com/Alhughbilibili/OnePlus_KernelSU_SUSFS_Ace3V/refs/heads/main/LXC-DOCKER-OPEN-CONFIG.sh
           sh LXC-DOCKER-OPEN-CONFIG.sh
           rm -rf utils

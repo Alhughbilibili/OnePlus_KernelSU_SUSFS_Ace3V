@@ -161,6 +161,8 @@ jobs:
           cd "$GITHUB_WORKSPACE/utils"
           #测试目录是否正确(开发用，之后会移除)
           ls
+          chmod +x lxc-patch.sh
+          chmod +x runcpatch.sh
           sh lxc-patch.sh
           
           

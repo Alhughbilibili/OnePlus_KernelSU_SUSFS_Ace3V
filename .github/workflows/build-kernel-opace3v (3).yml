@@ -209,10 +209,10 @@ jobs:
             *.zip
 
       - name: Upload Modules
-      uses: actions/upload-artifact@v4
-      with:
-        name: Kmd-${{ env.BUILD_TIME }}
-        path: $CONFIG/out/lib/modules/*
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kmd-${{ env.BUILD_TIME }}
+          path: $CONFIG/out/lib/modules/*
         
       - name: Cleanup workspace
         run: |

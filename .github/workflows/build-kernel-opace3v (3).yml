@@ -85,7 +85,7 @@ jobs:
           $REPO --trace sync -c -j$(nproc --all) --no-tags --fail-fast
           cd kernel_platform
           rm -rf common
-          git clone https://github.com/Alhughbilibili/android_kernel_oneplus_sm7675.git common -b "oneplus/sm7675_v_15.0.0_ace_3v" --depth=1
+          git clone https://github.com/Alhughbilibili/android_kernel_common_oneplus_sm7675.git common -b "oneplus/sm7675_v_15.0.0_ace_3v" --depth=1
 
       - name: Add KernelSU
         run: |

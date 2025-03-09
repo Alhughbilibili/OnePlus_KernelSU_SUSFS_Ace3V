@@ -90,7 +90,7 @@ jobs:
           cd "$CONFIG/kernel_platform"
           
           echo "Adding KernelSU..."
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
           cd ./KernelSU/kernel
           sed -i 's/ccflags-y += -DKSU_VERSION=16/ccflags-y += -DKSU_VERSION=${{ github.event.inputs.KERNELSU_VERSION }}/' ./Makefile
           

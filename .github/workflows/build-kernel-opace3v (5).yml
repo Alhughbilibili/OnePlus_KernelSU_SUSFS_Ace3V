@@ -3,11 +3,6 @@ name: Build OnePlus Ace 3V Android 14 6.1 Kernel(lxc)
 on:
   workflow_call:  # This allows this workflow to be called from another workflow
   workflow_dispatch:
-    inputs:
-      KERNELSU_VERSION:
-        description: "KSU版本(必须填纯数字)"
-        required: true
-        default: ''
   
 jobs:
   build-kernel-a14-6-1-kernelsu-lxc:
@@ -82,27 +77,14 @@ jobs:
           cd kernel_platform
           rm -rf common
           git clone https://github.com/Alhughbilibili/android_kernel_common_oneplus_sm7675 -b "oneplus/sm7675_v_15.0.0_ace_3v" common --depth=1
+      
 
-      - name: Add KernelSU
-        run: |
-          echo "Changing to configuration directory: $CONFIG..."
-          cd "$CONFIG/kernel_platform"
-          
-          echo "Adding KernelSU..."
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
-          cd ./KernelSU/kernel
-          sed -i 's/ccflags-y += -DKSU_VERSION=16/ccflags-y += -DKSU_VERSION=${{ github.event.inputs.KERNELSU_VERSION }}/' ./Makefile
-          
-
-      - name: Add KSU Configuration Settings
+      - name: Add Configuration Settings
         run: |
           echo "Changing to configuration directory: $CONFIG..."
           cd "$CONFIG/kernel_platform"
           
           echo "Adding configuration settings to gki_defconfig..."
-          
-          # Add KSU configuration settings
-          echo "CONFIG_KSU=y" >> ./common/arch/arm64/configs/gki_defconfig
           
           # Add additional tmpfs config setting
           echo "CONFIG_TMPFS_XATTR=y" >> ./common/arch/arm64/configs/gki_defconfig
@@ -149,7 +131,7 @@ jobs:
           echo "Creating zip files for all formats..."
           cd ./AnyKernel3
           
-          ZIP_NAME="Anykernel3-OPAce3V-A15-android14-6.1-KernelSU-LXC.zip"
+          ZIP_NAME="Anykernel3-OPAce3V-A15-android14-6.1-LXC.zip"
           echo "Creating zip file $ZIP_NAME..."
           zip -r "../$ZIP_NAME" ./*
           
